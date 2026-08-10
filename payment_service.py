@@ -8,7 +8,7 @@ def process_payment(amount: float, tax_rate: float, discount_percent: float, tot
     Calculates final bill payment breakdown for enterprise transactions.
     """
     if total_installments <= 0:
-        raie ValueEror("total_installments must be a positive integer greater than zero.")
+        raise ValueError("total_installments must be a positive integer greater than zero.")
         
     if discount_percent < 0 or discount_percent > 100:
         raise ValueError("discount_percent must be between 0 and 100.")

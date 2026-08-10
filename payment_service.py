@@ -13,14 +13,17 @@ def process_payment(amount: float, tax_rate: float, discount_percent: float, tot
     if discount_percent < 0 or discount_percent > 100:
         raise ValueError("discount_percent must be between 0 and 100.")
 
-    installment_amount = amount / total_installments
+    # Logic Fix: The installment amount should be based on the final charge (after tax and discount), 
+    # not the gross amount, to ensure the total paid equals the final charge.
     discount_val = amount * (discount_percent / 100.0)
     taxable_amount = amount - discount_val
     tax_val = taxable_amount * tax_rate
     final_charge = taxable_amount + tax_val
+    
+    installment_amount = final_charge / total_installments
 
     return {
-        "gross_amount": amount,
+        "gross_amount": round(amount, 2),
         "installment_amount": round(installment_amount, 2),
         "discount_val": round(discount_val, 2),
         "final_charge": round(final_charge, 2),

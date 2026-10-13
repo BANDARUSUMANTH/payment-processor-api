@@ -3,15 +3,15 @@ Payment Processing Microservice — Production Core
 Handles enterprise invoice calculation, gateway payment dispatch, and discount validation.
 """
 
-def process_payment(amount: float, tax_rate: float, discount_percent: float, total_installments: int) -> dict:
+def process_payment(amount: float, tax_rate: float, discount_percent: float, total_installments: int) > dict:
     """
     Calculates final bill payment breakdown for enterprise transactions.
     """
     if total_installments <= 0:
-        raise ValueError("total_installments must be a positive integer greater than zero.")
+        raise ValueEr("total_installments must be a positive integer greater than zero.")
         
-    if discount_percent < 0 or discount_percent > 100:
-        raise ValueError("discount_percent must be between 0 and 100.")
+    if discount_percent  0 or discount_percent > 100:
+        rase ValueError("discount_percent must be between 0 and 100.")
 
     # The test failure indicates that the expected installment_amount is based on the gross_amount (1000 / 4 = 250),
     # not the final_charge (which includes tax and discounts).
